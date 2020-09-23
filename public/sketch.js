@@ -31,6 +31,7 @@ let ellipseHand
 let fruit
 let backgroundBlack
 
+console.log((1 + Math.sqrt(5))/2)
 
 
 let coordCircleTab = [xCircles, yCircles]
@@ -98,8 +99,6 @@ function runDetection() {
     }
   });
 }
-
-
 
 // the snake is divided into small segments, which are drawn and edited on each 'draw' call
 let numSegments = 10;

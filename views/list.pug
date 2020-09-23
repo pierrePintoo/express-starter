@@ -4,8 +4,8 @@ block content
   a(href="/experiment/new") create
   ul
     each experiment in experiments
-      li= experiment.title
-        a(href=`/experiment/${experiment.id}`) view the experiment
+      li= experiment.title  
+          a(href=`/experiment/${experiment.id}`)  view the experiment
     else
       li There are no experiment
         

@@ -44,6 +44,7 @@ router.get('/api/:id(\\d+)', (req, res, next) => {
 })
 
 // on submitting a new job using form multipart
+
 router.post('/', upload.single('experiment'), (req, res, next) => {
   console.log(req.body, req)
   const title = req.body.title || 'untitled'
@@ -53,6 +54,26 @@ router.post('/', upload.single('experiment'), (req, res, next) => {
   return Experiment.create({
     title,
     file,
+  })
+    .then(experiment => res.redirect(301, '/experiment'))
+    .catch(err => {
+      console.log(
+        '***There was an error creating a experiment',
+        JSON.stringify(experiment),
+      )
+      return res.status(400).send(err)
+    })
+})
+
+
+//  
+router.post('/score', (req, res, next) => {
+  console.log('bdy',req.body)
+  const score = req.body.score || 'Un score de zero... Pas ouf'
+
+  return Experiment.create({
+    title : score,
+    filename: '',
   })
     .then(experiment => res.redirect(301, '/experiment'))
     .catch(err => {

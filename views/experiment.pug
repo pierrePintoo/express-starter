@@ -1,8 +1,8 @@
 extends layout
 
 block content
-  a(href="/") back
-  h1= title
+  a(href="/experiment" style="font-size: 20px;") Back
+  h1= 'Your score : ' + title
   .date= createdAt
   .file= file
   img(src=`/uploads/${file}`)

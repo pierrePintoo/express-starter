@@ -1,11 +1,18 @@
 extends layout
 
 block content
-  a(href="/experiment/new") create
+  a(class="create-experience" href="/experiment/new") Create an experiment
+  ul
+        li(class="liste_score")
+          span Name
+          span Score
+          span Check experience
   ul
     each experiment in experiments
-      li= experiment.title  
-          a(href=`/experiment/${experiment.id}`)  view the experiment
+      li(class="liste_score")
+          span(style="font-weight: bold")= experiment.username
+          span= experiment.title
+          a(href=`/experiment/${experiment.id}`)  Check the experiment
     else
       li There are no experiment
         

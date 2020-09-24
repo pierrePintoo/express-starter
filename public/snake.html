@@ -6,8 +6,11 @@
     <script src="p5.serialport.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.sound.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/handtrackjs/dist/handtrack.min.js"> </script>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="text.css">
     <meta charset="utf-8" />
+    <title>Snake hand</title>
     <style>
     html, body {
         margin: 0;
@@ -20,11 +23,12 @@
     </style>
   </head>
   <body>
-    <div id="message"> loading...</div>
+    <div id="message">Wait a moment...</div>
     <div style ="display:none">
     <canvas id="canvas" class="border canvasbox"></canvas>
       <video class="videobox canvasbox" autoplay="autoplay" id="webCam"></video>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/recorderjs/0.1.0/recorder.min.js" integrity="sha512-Dc8aBUPSsnAiEtyqTYZrldxDfs2FnS8cU7BVHIJ1m5atjKrtQCoPRIn3gsVbKm2qY8NwjpTVTnawoC4XBvEZiQ==" crossorigin="anonymous"></script>
     <script src="sketch.js"></script>
   </body>
 </html>

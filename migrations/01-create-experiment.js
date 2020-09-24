@@ -21,6 +21,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+      username: {
+        type: Sequelize.STRING,
+      }
     })
   },
   down: (queryInterface, Sequelize) => {

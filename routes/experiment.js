@@ -7,7 +7,11 @@ const upload = multer({ dest: path.join(__dirname, '..', 'public', 'uploads') })
 
 router.get('/', (req, res, next) => {
   return Experiment.findAll()
-    .then(experiments => res.render('list', { experiments }))
+    .then(experiments => {
+      console.log({ experiments })
+      
+      res.render('list', { experiments })
+    })
     .catch(err => {
       console.log(
         'There was an error querying experiments',
@@ -69,11 +73,13 @@ router.post('/', upload.single('experiment'), (req, res, next) => {
 //  
 router.post('/score', (req, res, next) => {
   console.log('bdy',req.body)
-  const score = req.body.score || 'Un score de zero... Pas ouf'
+  const score = req.body.score || 'Zero... Pas ouf'
+  const username = req.body.username || 'Newbie'
 
   return Experiment.create({
     title : score,
     filename: '',
+    username
   })
     .then(experiment => res.redirect(301, '/experiment'))
     .catch(err => {

@@ -39,7 +39,7 @@ let analyzer
 let carrier; // this is the oscillator we will hear
 let modulator; // this oscillator will modulate the amplitude of the carrier
 let fft; // we'll visualize the waveform
-
+let mic, recorder, soundFile;
 
 const modelParams = {
     flipHorizontal: true,  // flip e.g for video  
@@ -182,6 +182,15 @@ function setup() {
     xCor.push(xStart + i * diff);
     yCor.push(yStart);
   }
+  mic = new p5.AudioIn();
+
+  recorder = new p5.SoundRecorder();
+  recorder.setInput(mic);
+
+  soundFile = new p5.SoundFile();
+
+  recorder.record(soundFile);
+  userStartAudio();
 }
 
 function draw() {
@@ -229,7 +238,9 @@ function draw() {
 
   let modAmp = map(xCircle, 0, width, 0, 1);
   modulator.amp(modAmp, 0.01); // fade time of 0.1 for smooth fading
+  
 
+  
 }
 
 /*
@@ -307,24 +318,31 @@ function checkGameStatus() {
     checkSnakeCollision()
   ) {
     noLoop();
-    //console.log(xCircles, yCircles)
-    /*
-    for(i=0; i<xCircles.length; i++){
-      for(j=0; j<yCircles.length; j++){
-        noStroke()
-        ellipse(xCircles[i], yCircles[j], width/12)
-      }
-    }
-    */
+    
+    recorder.stop();
     const scoreVal = parseInt(scoreElem.html().substring(8));
     scoreElem.html('You loooooose, don\'t worry you can <a href="snake.html">try again</a> <br> Your score : ' + scoreVal);
     // Envoi vers la base de donnée
-    console.log(username)
+    var file = soundFile.getBlob()
+    
+    const formData = new FormData()
+
+    formData.append('title', scoreVal)
+    formData.append('username', username)
+    formData.append('file', file, 'fileName.wav')
+    
+    fetch('/experiment/score', {
+      method: 'POST',
+      body: formData
+    }).then(res => console.log(res.text()))
+    //console.log(username)
+    /*
     fetch('/experiment/score', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({score : scoreVal, username: username})
+      body: JSON.stringify({score : scoreVal, username: username, experiment: file})
     })
+    */
   }
 }
 

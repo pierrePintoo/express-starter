@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     'Experiment',
     {
       title: DataTypes.STRING,
-      file: DataTypes.STRING,
+      file: DataTypes.BLOB,
       username: DataTypes.STRING
     },
     {},

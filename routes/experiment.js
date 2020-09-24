@@ -72,14 +72,15 @@ router.post('/', upload.single('experiment'), (req, res, next) => {
 
 //  
 router.post('/score', (req, res, next) => {
-  console.log('bdy',req.body)
-  const score = req.body.score || 'Zero... Pas ouf'
-  const username = req.body.username || 'Newbie'
+  console.log('body', req.body)
+  const score = req.body.title 
+  const username = req.body.username 
+  const file = req.body.file 
 
   return Experiment.create({
     title : score,
-    filename: '',
-    username
+    username,
+    file
   })
     .then(experiment => res.redirect(301, '/experiment'))
     .catch(err => {

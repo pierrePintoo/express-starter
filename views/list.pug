@@ -13,6 +13,7 @@ block content
           span(style="font-weight: bold")= experiment.username
           span= experiment.title
           a(href=`/experiment/${experiment.id}`)  Check the experiment
+          audio(src=`${experiment.file}`)
     else
       li There are no experiment
         

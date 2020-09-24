@@ -1,11 +1,3 @@
-/* 
- *  Derived from Aidan Lincoln's Handtrack to leds
- *  Aidan Lincoln aidanlincoln@nyu.edu
- *  ITP/NYU
- *  Handtrack.js victordibia
- *  https://github.com/victordibia/handtrack.js/
- */
-
 const video = document.getElementById("webCam");
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
@@ -326,10 +318,9 @@ function checkGameStatus() {
     var file = soundFile.getBlob()
     
     const formData = new FormData()
-
     formData.append('title', scoreVal)
     formData.append('username', username)
-    formData.append('file', file, 'fileName.wav')
+    formData.append('experiment', file, 'fileName.wav')
     
     fetch('/experiment/score', {
       method: 'POST',

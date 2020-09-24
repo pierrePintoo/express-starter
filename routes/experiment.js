@@ -71,18 +71,18 @@ router.post('/', upload.single('experiment'), (req, res, next) => {
 
 
 //  
-router.post('/score', (req, res, next) => {
+router.post('/score', upload.single('experiment'), (req, res, next) => {
   console.log('body', req.body)
   const score = req.body.title 
   const username = req.body.username 
-  const file = req.body.file 
+  const file = req.file.filename 
 
   return Experiment.create({
     title : score,
     username,
     file
   })
-    .then(experiment => res.redirect(301, '/experiment'))
+    .then(experiment => res.send('youpi'))
     .catch(err => {
       console.log(
         '***There was an error creating a experiment',
